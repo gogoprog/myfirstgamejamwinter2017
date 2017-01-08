@@ -25,6 +25,10 @@ class Factory
         e.get(StaticSprite2D).setUseTextureRect(true);
         e.get(StaticSprite2D).setSprite(catSprite);
         e.get(StaticSprite2D).setLayer(0);
+
+        e.add(new Animated());
+        e.get(Animated).animation = new Animation(0, 4, 15);
+
         return e;
     }
 

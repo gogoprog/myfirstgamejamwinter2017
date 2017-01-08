@@ -6,6 +6,6 @@ import components.*;
 
 class AnimatedNode extends Node<AnimatedNode>
 {
-    public var animation:Animation;
+    public var animated:Animated;
     public var sprite:StaticSprite2D;
 }
