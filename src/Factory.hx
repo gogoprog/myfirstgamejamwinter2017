@@ -9,10 +9,16 @@ import haxe.ds.Vector;
 class Factory
 {
     static var catSprite:Dynamic;
+    public static var animations:Map<String, Animation>;
 
     static public function init()
     {
         catSprite = Gengine.getResourceCache().getSprite2D("cat.png", true);
+
+        animations = new Map();
+
+        animations["idle"] = new Animation(0, 4, 15, 64, 64, 1024, 1024);
+        animations["walk"] = new Animation(1, 8, 15, 64, 64, 1024, 1024);
     }
 
     static public function createAnimatedSprite():Entity
@@ -27,7 +33,7 @@ class Factory
         e.get(StaticSprite2D).setLayer(0);
 
         e.add(new Animated());
-        e.get(Animated).animation = new Animation(0, 4, 15);
+        e.get(Animated).animation = animations["walk"];
 
         return e;
     }
