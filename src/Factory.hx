@@ -21,7 +21,7 @@ class Factory
         animations["walk"] = new Animation(1, 8, 15, 64, 64, 1024, 1024);
     }
 
-    static public function createAnimatedSprite():Entity
+    static public function createCharacter():Entity
     {
         var e = new Entity();
         e.add(new StaticSprite2D());
@@ -33,6 +33,8 @@ class Factory
 
         e.add(new Animated());
         e.get(Animated).animation = animations["walk"];
+
+        e.add(new StreetElement());
 
         return e;
     }

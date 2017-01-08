@@ -6,6 +6,7 @@ import gengine.graphics.*;
 import ash.fsm.*;
 
 import systems.*;
+import components.*;
 import js.jquery.*;
 import js.UIPages;
 import js.PagesSet;
@@ -30,21 +31,27 @@ class Application
         Gengine.getRenderer().getDefaultZone().setFogColor(new Color(0.1,0.1,0.1,1));
 
         engine.addSystem(new AnimatedSystem(), 1);
+        engine.addSystem(new StreetSystem(), 10);
 
         Factory.init();
 
         var cameraEntity = Factory.createCamera();
         engine.addEntity(cameraEntity);
 
-        var e = Factory.createAnimatedSprite();
-
-        engine.addEntity(e);
-        e.position = new Vector3(0, 0, 0);
-
         var viewport:Viewport = new Viewport(Gengine.getContext());
         viewport.setScene(Gengine.getScene());
         viewport.setCamera(cameraEntity.get(Camera));
         Gengine.getRenderer().setViewport(0, viewport);
+
+        for(i in 0...10)
+        {
+            var e = Factory.createCharacter();
+
+            e.position = new Vector3(Std.random(10) * 64 - 320, 0, 0);
+            e.get(StreetElement).y = Std.random(10) * 10;
+            e.get(StaticSprite2D).setColor(new Color(Math.random(), Math.random(), Math.random(), 1));
+            engine.addEntity(e);
+        }
     }
 
     public static function onGuiLoaded()
