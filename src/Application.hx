@@ -28,6 +28,8 @@ class Application
         engine = _engine;
 
         Gengine.getRenderer().getDefaultZone().setFogColor(new Color(0.8,0.9,0.8,1));
+
+        engine.addSystem(new AnimatedSystem(), 1);
     }
 
     public static function onGuiLoaded()
@@ -36,7 +38,7 @@ class Application
 
         pages.showPage(".menu");
 
-        engine.getSystem(MenuSystem).init();
+        //engine.getSystem(MenuSystem).init();
     }
 
     public static function changeState(stateName)
