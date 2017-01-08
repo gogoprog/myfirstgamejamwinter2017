@@ -29,7 +29,7 @@ class AnimatedSystem extends ListIteratingSystem<AnimatedNode>
         var sprite = node.sprite;
         var animation = animated.animation;
 
-        var duration = (animation.length / animation.framerate);
+        var duration = animation.duration;
 
         animated.time += dt;
 
@@ -48,7 +48,7 @@ class AnimatedSystem extends ListIteratingSystem<AnimatedNode>
             }
         }
 
-        var frame = Std.int((animated.time / duration) * animation.length);
+        var frame = Std.int((animated.time / duration) * animation.frames.length);
 
         sprite.setTextureRect(animation.frames[frame]);
     }

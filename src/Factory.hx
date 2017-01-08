@@ -25,9 +25,8 @@ class Factory
     {
         var e = new Entity();
         e.add(new StaticSprite2D());
-        e.get(StaticSprite2D).setDrawRect(new Rect(new Vector2(-32, -32), new Vector2(32, 32)));
+        e.get(StaticSprite2D).setDrawRect(new Rect(new Vector2(-64, -64), new Vector2(64, 64)));
         e.get(StaticSprite2D).setUseDrawRect(true);
-        e.get(StaticSprite2D).setTextureRect(new Rect(new Vector2(0, 64/1024), new Vector2(64/1024, 0)));
         e.get(StaticSprite2D).setUseTextureRect(true);
         e.get(StaticSprite2D).setSprite(catSprite);
         e.get(StaticSprite2D).setLayer(0);
