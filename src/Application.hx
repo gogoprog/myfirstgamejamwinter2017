@@ -27,9 +27,24 @@ class Application
     {
         engine = _engine;
 
-        Gengine.getRenderer().getDefaultZone().setFogColor(new Color(0.8,0.9,0.8,1));
+        Gengine.getRenderer().getDefaultZone().setFogColor(new Color(0.1,0.1,0.1,1));
 
         engine.addSystem(new AnimatedSystem(), 1);
+
+        Factory.init();
+
+        var cameraEntity = Factory.createCamera();
+        engine.addEntity(cameraEntity);
+
+        var e = Factory.createAnimatedSprite();
+
+        engine.addEntity(e);
+        e.position = new Vector3(0, 0, 0);
+
+        var viewport:Viewport = new Viewport(Gengine.getContext());
+        viewport.setScene(Gengine.getScene());
+        viewport.setCamera(cameraEntity.get(Camera));
+        Gengine.getRenderer().setViewport(0, viewport);
     }
 
     public static function onGuiLoaded()
