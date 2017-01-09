@@ -40,7 +40,7 @@ class PlayerInputSystem extends ListIteratingSystem<PlayerInputNode>
             node.character.moveTarget = new Vector2(mouseWorldPosition.x, mouseWorldPosition.y);
         }
 
-        if(input.getMouseButtonDown(1 << 0))
+        if(input.getMouseButtonPress(1 << 0))
         {
             node.character.moveTarget = null;
             node.animated.push("punch");

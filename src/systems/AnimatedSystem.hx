@@ -27,7 +27,7 @@ class AnimatedSystem extends ListIteratingSystem<AnimatedNode>
     {
         var animated = node.animated;
         var sprite = node.sprite;
-        var animation = animated.animations[0];
+        var animation = animated.animations[animated.animations.length - 1];
 
         var duration = animation.duration;
 
@@ -45,6 +45,11 @@ class AnimatedSystem extends ListIteratingSystem<AnimatedNode>
             if(animated.time > duration)
             {
                 animated.time = duration - 0.0000001;
+
+                if(animated.animations.length > 1)
+                {
+                    animated.pop();
+                }
             }
         }
 
