@@ -39,6 +39,7 @@ class CharacterSystem extends ListIteratingSystem<CharacterNode>
                 c.moveTime = 0;
                 c.moveStartPosition = new Vector2(p.x, c.y);
                 c.moveDuration = Maths.getVector2Distance(c.moveStartPosition, c.moveTarget) / 100.0;
+                node.animated.animation = Factory.animations["walk"];
             }
 
             if(c.moveTime > c.moveDuration)
@@ -50,15 +51,25 @@ class CharacterSystem extends ListIteratingSystem<CharacterNode>
                 f = c.moveTime / c.moveDuration;
             }
 
-            var result = c.moveStartPosition + ( c.moveTarget - c.moveStartPosition ) * f;
+            var result = c.moveStartPosition + (c.moveTarget - c.moveStartPosition) * f;
 
             p.x = result.x;
             c.y = p.y = result.y;
+
+            if(c.moveTarget.x > c.moveStartPosition.x)
+            {
+                node.entity.scale = new Vector3(1, 1, 1);
+            }
+            else
+            {
+                node.entity.scale = new Vector3(-1, 1, 1);
+            }
 
             if(f == 1)
             {
                 c.moveTarget = null;
                 c.moveStartPosition = null;
+                node.animated.animation = Factory.animations["idle"];
             }
         }
 
