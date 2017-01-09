@@ -34,7 +34,7 @@ class Factory
         e.add(new Animated());
         e.get(Animated).animation = animations["walk"];
 
-        e.add(new StreetElement());
+        e.add(new Character());
 
         return e;
     }
