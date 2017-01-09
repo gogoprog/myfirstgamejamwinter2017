@@ -32,15 +32,16 @@ class CharacterSystem extends ListIteratingSystem<CharacterNode>
         if(c.moveTarget != null)
         {
             var f:Float;
-            c.moveTime += dt;
 
             if(c.moveStartPosition == null)
             {
                 c.moveTime = 0;
                 c.moveStartPosition = new Vector2(p.x, c.y);
                 c.moveDuration = Maths.getVector2Distance(c.moveStartPosition, c.moveTarget) / c.moveSpeed;
-                node.animated.animation = Factory.animations["walk"];
+                node.animated.push("walk");
             }
+
+            c.moveTime += dt;
 
             if(c.moveTime > c.moveDuration)
             {
@@ -69,7 +70,7 @@ class CharacterSystem extends ListIteratingSystem<CharacterNode>
             {
                 c.moveTarget = null;
                 c.moveStartPosition = null;
-                node.animated.animation = Factory.animations["idle"];
+                node.animated.pop();
             }
         }
 

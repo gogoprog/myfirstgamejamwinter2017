@@ -27,13 +27,13 @@ class AnimatedSystem extends ListIteratingSystem<AnimatedNode>
     {
         var animated = node.animated;
         var sprite = node.sprite;
-        var animation = animated.animation;
+        var animation = animated.animations[0];
 
         var duration = animation.duration;
 
         animated.time += dt;
 
-        if(animated.loop)
+        if(animation.loop)
         {
             while(animated.time >= duration)
             {

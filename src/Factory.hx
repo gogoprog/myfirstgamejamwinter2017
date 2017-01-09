@@ -17,8 +17,9 @@ class Factory
 
         animations = new Map();
 
-        animations["idle"] = new Animation(0, 0, 3, 10, 64, 64, 1024, 1024);
-        animations["walk"] = new Animation(1, 0, 7, 10, 64, 64, 1024, 1024);
+        animations["idle"] = new Animation(0, 0, 3, 10, 64, 64, 1024, 1024, true);
+        animations["walk"] = new Animation(1, 0, 7, 10, 64, 64, 1024, 1024, true);
+        animations["punch"] = new Animation(6, 0, 5, 15, 64, 64, 1024, 1024, false);
     }
 
     static public function createCharacter():Entity
@@ -32,9 +33,18 @@ class Factory
         e.get(StaticSprite2D).setLayer(0);
 
         e.add(new Animated());
-        e.get(Animated).animation = animations["walk"];
+        e.get(Animated).push("idle");
 
         e.add(new Character());
+
+        return e;
+    }
+
+    static public function createPlayer():Entity
+    {
+        var e = createCharacter();
+
+        e.add(new PlayerInput());
 
         return e;
     }

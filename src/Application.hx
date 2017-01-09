@@ -30,14 +30,15 @@ class Application
 
         Gengine.getRenderer().getDefaultZone().setFogColor(new Color(0.1,0.1,0.1,1));
 
+        var cameraEntity = Factory.createCamera();
+        engine.addEntity(cameraEntity);
+
         engine.addSystem(new AnimatedSystem(), 1);
         engine.addSystem(new StreetSystem(), 10);
         engine.addSystem(new CharacterSystem(), 10);
+        engine.addSystem(new PlayerInputSystem(cameraEntity), 2);
 
         Factory.init();
-
-        var cameraEntity = Factory.createCamera();
-        engine.addEntity(cameraEntity);
 
         var viewport:Viewport = new Viewport(Gengine.getContext());
         viewport.setScene(Gengine.getScene());
@@ -55,6 +56,9 @@ class Application
             e.get(StaticSprite2D).setColor(new Color(Math.random(), Math.random(), Math.random(), 1));
             engine.addEntity(e);
         }
+
+        var e = Factory.createPlayer();
+        engine.addEntity(e);
     }
 
     public static function onGuiLoaded()
