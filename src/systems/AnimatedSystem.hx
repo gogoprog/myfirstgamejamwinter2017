@@ -27,7 +27,7 @@ class AnimatedSystem extends ListIteratingSystem<AnimatedNode>
     {
         var animated = node.animated;
         var sprite = node.sprite;
-        var animation = animated.animations[animated.animations.length - 1];
+        var animation = animated.getCurrentAnimation();
 
         var duration = animation.duration;
 

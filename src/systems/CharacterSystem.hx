@@ -38,7 +38,11 @@ class CharacterSystem extends ListIteratingSystem<CharacterNode>
                 c.moveTime = 0;
                 c.moveStartPosition = new Vector2(p.x, c.y);
                 c.moveDuration = Maths.getVector2Distance(c.moveStartPosition, c.moveTarget) / c.moveSpeed;
-                node.animated.push("walk");
+
+                if(node.animated.getCurrentAnimation().name != "walk")
+                {
+                    node.animated.push("walk");
+                }
             }
 
             c.moveTime += dt;

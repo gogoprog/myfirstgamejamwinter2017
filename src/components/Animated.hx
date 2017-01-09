@@ -3,6 +3,7 @@ package components;
 class Animated
 {
     public var animations:Array<Animation> = [];
+    public var current:String;
     public var time:Float = 0;
 
     public function new()
@@ -12,6 +13,7 @@ class Animated
     public function push(anim:String)
     {
         animations.push(Factory.animations[anim]);
+        current = anim;
         time = 0;
     }
 
@@ -19,5 +21,10 @@ class Animated
     {
         animations.pop();
         time = 0;
+    }
+
+    public function getCurrentAnimation()
+    {
+        return animations[animations.length - 1];
     }
 }

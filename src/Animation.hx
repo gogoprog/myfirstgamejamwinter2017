@@ -5,8 +5,9 @@ class Animation
     public var frames:Array<Rect>;
     public var duration:Float;
     public var loop:Bool;
+    public var name:String;
 
-    public function new(line, from, to, framerate, frameWidth, frameHeight, width, height, loop)
+    public function new(name, line, from, to, framerate, frameWidth, frameHeight, width, height, loop)
     {
         var length = to - from + 1;
         frames = [];
@@ -18,5 +19,6 @@ class Animation
 
         duration = length / framerate;
         this.loop = loop;
+        this.name = name;
     }
 }
