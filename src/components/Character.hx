@@ -10,6 +10,8 @@ class Character
     public var moveDuration:Float = 0;
     public var y:Float;
 
+    public var moveSpeed:Float = 100.0;
+
     public function new()
     {
     }

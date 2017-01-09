@@ -17,8 +17,8 @@ class Factory
 
         animations = new Map();
 
-        animations["idle"] = new Animation(0, 4, 15, 64, 64, 1024, 1024);
-        animations["walk"] = new Animation(1, 8, 15, 64, 64, 1024, 1024);
+        animations["idle"] = new Animation(0, 0, 3, 10, 64, 64, 1024, 1024);
+        animations["walk"] = new Animation(1, 0, 7, 10, 64, 64, 1024, 1024);
     }
 
     static public function createCharacter():Entity
