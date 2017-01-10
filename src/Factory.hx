@@ -17,9 +17,15 @@ class Factory
 
         animations = new Map();
 
-        animations["idle"] = new Animation("idle", 0, 0, 3, 10, 64, 64, 1024, 1024, true);
-        animations["walk"] = new Animation("walk", 1, 0, 7, 10, 64, 64, 1024, 1024, true);
-        animations["punch"] = new Animation("punch", 6, 0, 5, 15, 64, 64, 1024, 1024, false);
+        addAnimation(new Animation("idle", 0, 0, 3, 10, 64, 64, 1024, 1024, true));
+        addAnimation(new Animation("walk", 1, 0, 7, 10, 64, 64, 1024, 1024, true));
+        addAnimation(new Animation("punch", 6, 0, 5, 15, 64, 64, 1024, 1024, false));
+        addAnimation(new Animation("punches", 9, 0, 9, 15, 64, 64, 1024, 1024, false));
+    }
+
+    static public function addAnimation(anim:Animation)
+    {
+        animations[anim.name] = anim;
     }
 
     static public function createCharacter():Entity

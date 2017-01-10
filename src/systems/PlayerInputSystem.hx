@@ -43,7 +43,14 @@ class PlayerInputSystem extends ListIteratingSystem<PlayerInputNode>
         if(input.getMouseButtonPress(1 << 0))
         {
             node.character.moveTarget = null;
-            node.animated.push("punch");
+            if(Math.random() < 0.5)
+            {
+                node.animated.push("punch");
+            }
+            else
+            {
+                node.animated.push("punches");
+            }
         }
     }
 
