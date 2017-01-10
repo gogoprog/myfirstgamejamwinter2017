@@ -8,7 +8,7 @@ class Character
     public var moveStartPosition:Vector2 = null;
     public var moveTime:Float = 0;
     public var moveDuration:Float = 0;
-    public var y:Float;
+    public var y:Float = 0;
 
     public var moveSpeed:Float = 100.0;
 
