@@ -37,6 +37,7 @@ class Application
         engine.addSystem(new StreetSystem(), 10);
         engine.addSystem(new CharacterSystem(), 10);
         engine.addSystem(new PlayerInputSystem(cameraEntity), 2);
+        engine.addSystem(new MoveSystem(), 10);
 
         Factory.init();
 
@@ -51,9 +52,12 @@ class Application
 
             e.position = new Vector3(Std.random(10) * 64 - 320, 0, 0);
             e.get(Character).y = Std.random(10) * 10;
-            e.get(Character).moveTarget = new Vector2(Std.random(10) * 64 - 320, Std.random(10) * 10);
 
             e.get(StaticSprite2D).setColor(new Color(Math.random(), Math.random(), Math.random(), 1));
+
+            e.get(Character).moveTarget = new Vector2(Std.random(10) * 64 - 320, Std.random(10) * 10);
+            e.get(Character).sm.changeState("moving");
+
             engine.addEntity(e);
         }
 

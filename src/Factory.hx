@@ -31,17 +31,27 @@ class Factory
     static public function createCharacter():Entity
     {
         var e = new Entity();
+        var sm = new EntityStateMachine(e);
         e.add(new StaticSprite2D());
         e.get(StaticSprite2D).setDrawRect(new Rect(new Vector2(-64, -64), new Vector2(64, 64)));
         e.get(StaticSprite2D).setUseDrawRect(true);
         e.get(StaticSprite2D).setUseTextureRect(true);
         e.get(StaticSprite2D).setSprite(catSprite);
         e.get(StaticSprite2D).setLayer(0);
+        e.add(new StreetElement());
 
         e.add(new Animated());
         e.get(Animated).push("idle");
 
         e.add(new Character());
+        e.get(Character).sm = sm;
+
+        sm.createState("idling");
+
+        sm.createState("moving")
+            .add(Move).withInstance(new Move());
+
+        sm.changeState("idling");
 
         return e;
     }

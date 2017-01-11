@@ -36,8 +36,9 @@ class PlayerInputSystem extends ListIteratingSystem<PlayerInputNode>
 
         if(input.getMouseButtonDown(1 << 2))
         {
-            node.character.moveStartPosition = null;
+            node.character.sm.changeState("idling");
             node.character.moveTarget = new Vector2(mouseWorldPosition.x, mouseWorldPosition.y);
+            node.character.sm.changeState("moving");
         }
 
         if(input.getMouseButtonPress(1 << 0))
