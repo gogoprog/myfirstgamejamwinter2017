@@ -27,8 +27,6 @@ class IdleSystem extends ListIteratingSystem<IdleNode>
 
         if(c.moveTarget != null)
         {
-            trace("YES TARGET");
-            trace(c.moveTarget);
             c.sm.changeState("moving");
         }
     }

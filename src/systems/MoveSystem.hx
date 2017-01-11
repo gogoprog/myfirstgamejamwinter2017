@@ -31,6 +31,15 @@ class MoveSystem extends ListIteratingSystem<MoveNode>
 
         var f:Float;
 
+        if(c.moveTarget != m.moveTarget)
+        {
+            m.moveTime = 0;
+            m.moveTarget = c.moveTarget;
+            m.moveSpeed = c.moveSpeed;
+            m.moveStartPosition = new Vector2(p.x, e.y);
+            m.moveDuration = Maths.getVector2Distance(m.moveStartPosition, c.moveTarget) / c.moveSpeed;
+        }
+
         m.moveTime += dt;
 
         if(m.moveTime > m.moveDuration)
@@ -58,6 +67,7 @@ class MoveSystem extends ListIteratingSystem<MoveNode>
 
         if(f == 1)
         {
+            c.moveTarget = null;
             c.sm.changeState("idling");
         }
 
@@ -66,19 +76,7 @@ class MoveSystem extends ListIteratingSystem<MoveNode>
 
     private function onNodeAdded(node:MoveNode)
     {
-        trace("onNodeAdded");
-        var m = node.move;
-        var c = node.character;
-        var p = node.entity.position;
-        var e = node.element;
-
-        m.moveTime = 0;
-        m.moveTarget = c.moveTarget;
-        m.moveSpeed = c.moveSpeed;
-        m.moveStartPosition = new Vector2(p.x, e.y);
-        m.moveDuration = Maths.getVector2Distance(m.moveStartPosition, c.moveTarget) / c.moveSpeed;
         node.animated.push("walk");
-        c.moveTarget = null;
     }
 
     private function onNodeRemoved(node:MoveNode)
