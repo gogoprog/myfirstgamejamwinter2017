@@ -29,39 +29,36 @@ class MoveSystem extends ListIteratingSystem<MoveNode>
         var m = node.move;
         var e = node.element;
 
-        if(c.moveTarget != null)
+        var f:Float;
+
+        m.moveTime += dt;
+
+        if(m.moveTime > m.moveDuration)
         {
-            var f:Float;
+            f = 1;
+        }
+        else
+        {
+            f = m.moveTime / m.moveDuration;
+        }
 
-            m.moveTime += dt;
+        var result = m.moveStartPosition + (m.moveTarget - m.moveStartPosition) * f;
 
-            if(m.moveTime > m.moveDuration)
-            {
-                f = 1;
-            }
-            else
-            {
-                f = m.moveTime / m.moveDuration;
-            }
+        p.x = result.x;
+        e.y = result.y;
 
-            var result = m.moveStartPosition + (m.moveTarget - m.moveStartPosition) * f;
+        if(m.moveTarget.x > m.moveStartPosition.x)
+        {
+            node.entity.scale = new Vector3(1, 1, 1);
+        }
+        else
+        {
+            node.entity.scale = new Vector3(-1, 1, 1);
+        }
 
-            p.x = result.x;
-            e.y = result.y;
-
-            if(c.moveTarget.x > m.moveStartPosition.x)
-            {
-                node.entity.scale = new Vector3(1, 1, 1);
-            }
-            else
-            {
-                node.entity.scale = new Vector3(-1, 1, 1);
-            }
-
-            if(f == 1)
-            {
-                c.sm.changeState("idling");
-            }
+        if(f == 1)
+        {
+            c.sm.changeState("idling");
         }
 
         node.entity.position = p;
@@ -69,6 +66,7 @@ class MoveSystem extends ListIteratingSystem<MoveNode>
 
     private function onNodeAdded(node:MoveNode)
     {
+        trace("onNodeAdded");
         var m = node.move;
         var c = node.character;
         var p = node.entity.position;
@@ -79,11 +77,8 @@ class MoveSystem extends ListIteratingSystem<MoveNode>
         m.moveSpeed = c.moveSpeed;
         m.moveStartPosition = new Vector2(p.x, e.y);
         m.moveDuration = Maths.getVector2Distance(m.moveStartPosition, c.moveTarget) / c.moveSpeed;
-
-        if(node.animated.getCurrentAnimation().name != "walk")
-        {
-            node.animated.push("walk");
-        }
+        node.animated.push("walk");
+        c.moveTarget = null;
     }
 
     private function onNodeRemoved(node:MoveNode)

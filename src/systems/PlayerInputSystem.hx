@@ -31,19 +31,17 @@ class PlayerInputSystem extends ListIteratingSystem<PlayerInputNode>
         var input = Gengine.getInput();
         var mousePosition = input.getMousePosition();
 
-        var mouseScreenPosition = new Vector2(mousePosition.x / 1024, mousePosition.y / 768);
+        var mouseScreenPosition = new Vector2(mousePosition.x / 640, mousePosition.y / 480);
         var mouseWorldPosition:Vector3 = cameraEntity.get(Camera).screenToWorldPoint(new Vector3(mouseScreenPosition.x, mouseScreenPosition.y, 0));
 
         if(input.getMouseButtonDown(1 << 2))
         {
-            node.character.sm.changeState("idling");
             node.character.moveTarget = new Vector2(mouseWorldPosition.x, mouseWorldPosition.y);
-            node.character.sm.changeState("moving");
         }
 
         if(input.getMouseButtonPress(1 << 0))
         {
-            node.character.moveTarget = null;
+            //node.character.moveTarget = null;
             if(Math.random() < 0.5)
             {
                 node.animated.push("punch");

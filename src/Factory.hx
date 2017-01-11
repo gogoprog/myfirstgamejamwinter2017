@@ -50,7 +50,8 @@ class Factory
         e.add(new Character());
         e.get(Character).sm = sm;
 
-        sm.createState("idling");
+        sm.createState("idling")
+            .add(Idle).withInstance(new Idle());
 
         sm.createState("moving")
             .add(Move).withInstance(new Move());
@@ -76,7 +77,7 @@ class Factory
     {
         var cameraEntity = new Entity();
         cameraEntity.add(new Camera());
-        cameraEntity.get(Camera).setOrthoSize(new Vector2(1024, 768));
+        cameraEntity.get(Camera).setOrthoSize(new Vector2(640, 480));
         cameraEntity.get(Camera).setOrthographic(true);
 
         return cameraEntity;

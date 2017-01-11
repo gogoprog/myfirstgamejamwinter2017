@@ -19,7 +19,7 @@ class Application
 
     public static function init()
     {
-        Gengine.setWindowSize(new IntVector2(1024, 768));
+        Gengine.setWindowSize(new IntVector2(640, 480));
         Gengine.setWindowTitle("myfirstgamejamwinter2017");
         Gengine.setGuiFilename("gui/gui.html");
     }
@@ -41,6 +41,7 @@ class Application
         engine.addSystem(new HitSystem(), 11);
         engine.addSystem(new HurtSystem(), 11);
         engine.addSystem(new DeathSystem(), 11);
+        engine.addSystem(new IdleSystem(), 11);
 
         Factory.init();
 
@@ -54,14 +55,13 @@ class Application
             var e = Factory.createCharacter();
 
             e.position = new Vector3(Std.random(10) * 64 - 320, 0, 0);
-            e.get(Character).y = Std.random(10) * 10;
 
+            e.get(Character).y = Std.random(10) * 10;
             e.get(StaticSprite2D).setColor(new Color(Math.random(), Math.random(), Math.random(), 1));
 
-            e.get(Character).moveTarget = new Vector2(Std.random(10) * 64 - 320, Std.random(10) * 10);
-            e.get(Character).sm.changeState("moving");
-
             engine.addEntity(e);
+
+            e.get(Character).moveTarget = new Vector2(Std.random(10) * 64 - 320, Std.random(10) * 10);
         }
 
         var e = Factory.createPlayer();
