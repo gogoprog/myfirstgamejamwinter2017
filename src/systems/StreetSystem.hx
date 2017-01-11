@@ -26,7 +26,7 @@ class StreetSystem extends ListIteratingSystem<StreetElementNode>
     private function updateNode(node:StreetElementNode, dt:Float):Void
     {
         var p = node.entity.position;
-        p.y = node.element.y;
+        p.y = node.element.y + node.element.offset;
         node.entity.position = p;
         node.sprite.setOrderInLayer(Std.int(-p.y));
     }

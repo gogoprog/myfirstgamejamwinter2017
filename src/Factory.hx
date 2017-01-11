@@ -38,6 +38,9 @@ class Factory
         e.get(StaticSprite2D).setUseTextureRect(true);
         e.get(StaticSprite2D).setSprite(catSprite);
         e.get(StaticSprite2D).setLayer(0);
+        e.get(StaticSprite2D).setHotSpot(new Vector2(0, 32));
+        e.get(StaticSprite2D).setUseHotSpot(true);
+
         e.add(new StreetElement());
 
         e.add(new Animated());

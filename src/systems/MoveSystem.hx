@@ -47,7 +47,7 @@ class MoveSystem extends ListIteratingSystem<MoveNode>
             var result = m.moveStartPosition + (m.moveTarget - m.moveStartPosition) * f;
 
             p.x = result.x;
-            e.y = p.y = result.y;
+            e.y = result.y;
 
             if(c.moveTarget.x > m.moveStartPosition.x)
             {
@@ -72,11 +72,12 @@ class MoveSystem extends ListIteratingSystem<MoveNode>
         var m = node.move;
         var c = node.character;
         var p = node.entity.position;
+        var e = node.element;
 
         m.moveTime = 0;
         m.moveTarget = c.moveTarget;
         m.moveSpeed = c.moveSpeed;
-        m.moveStartPosition = new Vector2(p.x, p.y);
+        m.moveStartPosition = new Vector2(p.x, e.y);
         m.moveDuration = Maths.getVector2Distance(m.moveStartPosition, c.moveTarget) / c.moveSpeed;
 
         if(node.animated.getCurrentAnimation().name != "walk")

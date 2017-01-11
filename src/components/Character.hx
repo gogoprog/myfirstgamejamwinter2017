@@ -8,6 +8,7 @@ class Character
     public var sm:EntityStateMachine;
     public var moveSpeed:Float = 100.0;
     public var moveTarget:Vector2 = null;
+    public var life:Float = 100.0;
 
     public function new()
     {
