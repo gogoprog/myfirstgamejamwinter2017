@@ -5,6 +5,7 @@ class Animated
     public var animations:Array<Animation> = [];
     public var current:String;
     public var time:Float = 0;
+    public var lock = false;
 
     public function new()
     {

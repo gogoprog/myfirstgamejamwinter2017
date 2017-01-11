@@ -53,6 +53,11 @@ class PlayerInputSystem extends ListIteratingSystem<PlayerInputNode>
                 node.animated.push("punches");
             }
         }
+
+        if(input.getMouseButtonDown(1 << 1))
+        {
+            node.character.sm.changeState("dying");
+        }
     }
 
     private function onNodeAdded(node:PlayerInputNode)

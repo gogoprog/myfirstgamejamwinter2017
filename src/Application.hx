@@ -38,6 +38,9 @@ class Application
         engine.addSystem(new CharacterSystem(), 10);
         engine.addSystem(new PlayerInputSystem(cameraEntity), 2);
         engine.addSystem(new MoveSystem(), 10);
+        engine.addSystem(new HitSystem(), 11);
+        engine.addSystem(new HurtSystem(), 11);
+        engine.addSystem(new DeathSystem(), 11);
 
         Factory.init();
 

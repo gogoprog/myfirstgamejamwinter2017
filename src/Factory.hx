@@ -21,6 +21,7 @@ class Factory
         addAnimation(new Animation("walk", 1, 0, 7, 10, 64, 64, 1024, 1024, true));
         addAnimation(new Animation("punch", 6, 0, 5, 15, 64, 64, 1024, 1024, false));
         addAnimation(new Animation("punches", 9, 0, 9, 15, 64, 64, 1024, 1024, false));
+        addAnimation(new Animation("death", 4, 0, 6, 5, 64, 64, 1024, 1024, false));
     }
 
     static public function addAnimation(anim:Animation)
@@ -53,6 +54,9 @@ class Factory
 
         sm.createState("moving")
             .add(Move).withInstance(new Move());
+
+        sm.createState("dying")
+            .add(Death).withInstance(new Death());
 
         sm.changeState("idling");
 

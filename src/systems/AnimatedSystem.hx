@@ -46,7 +46,7 @@ class AnimatedSystem extends ListIteratingSystem<AnimatedNode>
             {
                 animated.time = duration - 0.0000001;
 
-                if(animated.animations.length > 1)
+                if(animated.animations.length > 1 && !animated.lock)
                 {
                     animated.pop();
                 }
