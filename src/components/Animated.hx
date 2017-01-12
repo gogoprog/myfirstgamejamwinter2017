@@ -3,7 +3,6 @@ package components;
 class Animated
 {
     public var animations:Array<Animation> = [];
-    public var current:String;
     public var time:Float = 0;
     public var lock = false;
 
@@ -14,7 +13,12 @@ class Animated
     public function push(anim:String)
     {
         animations.push(Factory.animations[anim]);
-        current = anim;
+        time = 0;
+    }
+
+    public function push2(anim:Animation)
+    {
+        animations.push(anim);
         time = 0;
     }
 

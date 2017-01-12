@@ -59,6 +59,9 @@ class Factory
         sm.createState("dying")
             .add(Death).withInstance(new Death());
 
+        sm.createState("hitting")
+            .add(Hit).withInstance(new Hit());
+
         sm.changeState("idling");
 
         return e;

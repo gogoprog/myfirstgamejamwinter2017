@@ -23,10 +23,17 @@ class HitSystem extends ListIteratingSystem<HitNode>
 
     private function updateNode(node:HitNode, dt:Float):Void
     {
+        if(node.animated.getCurrentAnimation() != node.hit.animation)
+        {
+            node.character.sm.changeState("idling");
+        }
     }
 
     private function onNodeAdded(node:HitNode)
     {
+        node.hit.animation = node.character.nextHitAnimation;
+        node.animated.push2(node.hit.animation);
+        node.character.nextHitAnimation = null;
     }
 
     private function onNodeRemoved(node:HitNode)

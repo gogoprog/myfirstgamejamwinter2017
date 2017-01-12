@@ -29,6 +29,11 @@ class IdleSystem extends ListIteratingSystem<IdleNode>
         {
             c.sm.changeState("moving");
         }
+
+        if(c.nextHitAnimation != null)
+        {
+            c.sm.changeState("hitting");
+        }
     }
 
     private function onNodeAdded(node:IdleNode)
