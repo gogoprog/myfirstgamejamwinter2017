@@ -62,6 +62,9 @@ class Factory
         sm.createState("hitting")
             .add(Hit).withInstance(new Hit());
 
+        sm.createState("hurting")
+            .add(Hurt).withInstance(new Hurt());
+
         sm.changeState("idling");
 
         return e;

@@ -23,10 +23,18 @@ class HurtSystem extends ListIteratingSystem<HurtNode>
 
     private function updateNode(node:HurtNode, dt:Float):Void
     {
+        var ca = node.animated.getCurrentAnimation();
+
+        if(ca != node.hurt.animation)
+        {
+            node.character.sm.changeState("idling");
+        }
     }
 
     private function onNodeAdded(node:HurtNode)
     {
+        node.hurt.animation = Factory.animations["death"];
+        node.animated.push2(node.hurt.animation);
     }
 
     private function onNodeRemoved(node:HurtNode)

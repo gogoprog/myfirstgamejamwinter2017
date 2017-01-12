@@ -1,6 +1,7 @@
 package systems;
 
 import ash.tools.ListIteratingSystem;
+import ash.core.NodeList;
 
 import components.*;
 import nodes.*;
@@ -9,6 +10,7 @@ import gengine.*;
 class HitSystem extends ListIteratingSystem<HitNode>
 {
     private var engine:Engine;
+    private var charactersList:NodeList<CharacterNode>;
 
     public function new()
     {
@@ -19,11 +21,35 @@ class HitSystem extends ListIteratingSystem<HitNode>
     {
         this.engine = engine;
         super.addToEngine(engine);
+        charactersList = engine.getNodeList(CharacterNode);
     }
 
     private function updateNode(node:HitNode, dt:Float):Void
     {
-        if(node.animated.getCurrentAnimation() != node.hit.animation)
+        var ca = node.animated.getCurrentAnimation();
+
+        if(!node.hit.done && node.animated.time > ca.duration * 0.5)
+        {
+            var p = node.entity.position;
+            node.hit.done = true;
+
+            for(other in charactersList)
+            {
+                if(other.entity != node.entity)
+                {
+                    var p2 = other.entity.position;
+
+                    if(Math.abs(p2.x - p.x) < 32 && Math.abs(p2.y - p.y) < 32)
+                    {
+                        //engine.updateComplete.addOnce(function() {
+                                other.character.sm.changeState("hurting");
+                        //    });
+                    }
+                }
+            }
+        }
+
+        if(ca != node.hit.animation)
         {
             node.character.sm.changeState("idling");
         }
@@ -34,6 +60,7 @@ class HitSystem extends ListIteratingSystem<HitNode>
         node.hit.animation = node.character.nextHitAnimation;
         node.animated.push2(node.hit.animation);
         node.character.nextHitAnimation = null;
+        node.hit.done = false;
     }
 
     private function onNodeRemoved(node:HitNode)
