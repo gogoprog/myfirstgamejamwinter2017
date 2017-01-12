@@ -35,15 +35,14 @@ class HitSystem extends ListIteratingSystem<HitNode>
 
             for(other in charactersList)
             {
-                if(other.entity != node.entity)
+                if(other.entity != node.entity && other.character.life > 0)
                 {
                     var p2 = other.entity.position;
 
-                    if(Math.abs(p2.x - p.x) < 32 && Math.abs(p2.y - p.y) < 32)
+                    if(Math.abs(p2.x - p.x) < 40 && Math.abs(p2.y - p.y) < 20)
                     {
-                        //engine.updateComplete.addOnce(function() {
-                                other.character.sm.changeState("hurting");
-                        //    });
+                        other.character.hitter = node.entity;
+                        other.character.sm.changeState("hurting");
                     }
                 }
             }

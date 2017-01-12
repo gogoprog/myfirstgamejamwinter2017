@@ -5,6 +5,7 @@ import ash.tools.ListIteratingSystem;
 import components.*;
 import nodes.*;
 import gengine.*;
+import gengine.math.*;
 
 class HurtSystem extends ListIteratingSystem<HurtNode>
 {
@@ -33,8 +34,28 @@ class HurtSystem extends ListIteratingSystem<HurtNode>
 
     private function onNodeAdded(node:HurtNode)
     {
-        node.hurt.animation = Factory.animations["death"];
+        node.hurt.hitter = node.character.hitter;
+        node.hurt.animation = Factory.animations["hit"];
         node.animated.push2(node.hurt.animation);
+
+        var hitterPos = node.hurt.hitter.position;
+        var p = node.entity.position;
+
+        if(p.x < hitterPos.x)
+        {
+            node.entity.scale = new Vector3(1, 1, 1);
+        }
+        else
+        {
+            node.entity.scale = new Vector3(-1, 1, 1);
+        }
+
+        node.character.life -= 10;
+
+        if(node.character.life <= 0)
+        {
+            node.character.sm.changeState("dying");
+        }
     }
 
     private function onNodeRemoved(node:HurtNode)
