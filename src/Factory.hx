@@ -42,6 +42,7 @@ class Factory
         e.get(StaticSprite2D).setLayer(0);
         e.get(StaticSprite2D).setHotSpot(new Vector2(0, 32));
         e.get(StaticSprite2D).setUseHotSpot(true);
+        e.get(StaticSprite2D).setLayer(2);
 
         e.add(new StreetElement());
 
@@ -88,5 +89,15 @@ class Factory
         cameraEntity.get(Camera).setOrthographic(true);
 
         return cameraEntity;
+    }
+
+    static public function createMap():Entity
+    {
+        var e = new Entity();
+        e.add(new TileMap2D());
+
+        //e.get(TileMap2D).setTmxFile(Gengine.getResourceCache().getTmxFile2D("map.tmx", true));
+
+        return e;
     }
 }

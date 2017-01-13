@@ -50,7 +50,7 @@ class Application
         viewport.setCamera(cameraEntity.get(Camera));
         Gengine.getRenderer().setViewport(0, viewport);
 
-        for(i in 0...100)
+        for(i in 0...10)
         {
             var e = Factory.createCharacter();
 
@@ -66,6 +66,12 @@ class Application
 
         var e = Factory.createPlayer();
         engine.addEntity(e);
+
+        var e = Factory.createMap();
+        engine.addEntity(e);
+        e.scale = new Vector3(0.5, 0.5, 1);
+        e.position = new Vector3(-200, -200, 0);
+        e.get(TileMap2D).setTmxFile(Gengine.getResourceCache().getTmxFile2D("map.tmx", true));
     }
 
     public static function onGuiLoaded()
