@@ -51,7 +51,7 @@ class PlayerInputSystem extends ListIteratingSystem<PlayerInputNode>
             if(c.entity != node.entity && c.character.life > 0)
             {
                 var p2 = c.entity.position;
-                if(Math.abs(p2.x - mouseWorldPosition.x) < 40 && mouseWorldPosition.y > p2.y - 48 && mouseWorldPosition.y < p2.y + 32)
+                if(Math.abs(p2.x - mouseWorldPosition.x) < 35 && mouseWorldPosition.y > p2.y - 48 && mouseWorldPosition.y < p2.y + 32)
                 {
                     var distance = Maths.getVector3DistanceSquared(mouseWorldPosition, p2);
 
@@ -75,6 +75,15 @@ class PlayerInputSystem extends ListIteratingSystem<PlayerInputNode>
             {
                 if(input.getMouseButtonPress(1 << 0))
                 {
+                    if(playerPos.x < closestPos.x)
+                    {
+                        node.entity.scale = new Vector3(1, 1, 1);
+                    }
+                    else
+                    {
+                        node.entity.scale = new Vector3(-1, 1, 1);
+                    }
+
                     if(Math.random() < 0.5)
                     {
                         node.character.nextHitAnimation = Factory.animations["punch"];

@@ -50,7 +50,7 @@ class Application
         viewport.setCamera(cameraEntity.get(Camera));
         Gengine.getRenderer().setViewport(0, viewport);
 
-        for(i in 0...10)
+        for(i in 0...100)
         {
             var e = Factory.createCharacter();
 
