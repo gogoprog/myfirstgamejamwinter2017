@@ -42,7 +42,7 @@ class Factory
         e.get(StaticSprite2D).setLayer(0);
         e.get(StaticSprite2D).setHotSpot(new Vector2(0, 32));
         e.get(StaticSprite2D).setUseHotSpot(true);
-        e.get(StaticSprite2D).setLayer(2);
+        e.get(StaticSprite2D).setLayer(100);
 
         e.add(new StreetElement());
 

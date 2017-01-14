@@ -69,8 +69,8 @@ class Application
 
         var e = Factory.createMap();
         engine.addEntity(e);
-        e.scale = new Vector3(0.5, 0.5, 1);
-        e.position = new Vector3(-200, -200, 0);
+        e.scale = new Vector3(1, 1, 1);
+        e.position = new Vector3(-400, -400, 0);
         e.get(TileMap2D).setTmxFile(Gengine.getResourceCache().getTmxFile2D("map.tmx", true));
     }
 
