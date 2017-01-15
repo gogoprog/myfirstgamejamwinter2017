@@ -55,6 +55,8 @@ class MoveSystem extends ListIteratingSystem<MoveNode>
 
         p.x = result.x;
         e.y = result.y;
+        e.y = Math.min(e.y, 0);
+        e.y = Math.max(e.y, -200);
 
         if(m.moveTarget.x > m.moveStartPosition.x)
         {
