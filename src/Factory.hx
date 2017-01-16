@@ -35,7 +35,7 @@ class Factory
         var e = new Entity();
         var sm = new EntityStateMachine(e);
         e.add(new StaticSprite2D());
-        e.get(StaticSprite2D).setDrawRect(new Rect(new Vector2(-64, -64), new Vector2(64, 64)));
+        e.get(StaticSprite2D).setDrawRect(new Rect(new Vector2(-96, -96), new Vector2(96, 96)));
         e.get(StaticSprite2D).setUseDrawRect(true);
         e.get(StaticSprite2D).setUseTextureRect(true);
         e.get(StaticSprite2D).setSprite(catSprite);
@@ -85,7 +85,7 @@ class Factory
     {
         var cameraEntity = new Entity();
         cameraEntity.add(new Camera());
-        cameraEntity.get(Camera).setOrthoSize(new Vector2(640, 480));
+        cameraEntity.get(Camera).setOrthoSize(new Vector2(800, 600));
         cameraEntity.get(Camera).setOrthographic(true);
 
         return cameraEntity;

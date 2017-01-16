@@ -19,7 +19,7 @@ class Application
 
     public static function init()
     {
-        Gengine.setWindowSize(new IntVector2(640, 480));
+        Gengine.setWindowSize(new IntVector2(800, 600));
         Gengine.setWindowTitle("myfirstgamejamwinter2017");
         Gengine.setGuiFilename("gui/gui.html");
     }

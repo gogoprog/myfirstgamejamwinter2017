@@ -35,11 +35,14 @@ class PlayerInputSystem extends ListIteratingSystem<PlayerInputNode>
         var input = Gengine.getInput();
         var mousePosition = input.getMousePosition();
 
-        var mouseScreenPosition = new Vector2(mousePosition.x / 640, mousePosition.y / 480);
+        var mouseScreenPosition = new Vector2(mousePosition.x / 800, mousePosition.y / 600);
         var mouseWorldPosition:Vector3 = cameraEntity.get(Camera).screenToWorldPoint(new Vector3(mouseScreenPosition.x, mouseScreenPosition.y, 0));
 
         var closestNode:CharacterNode = null;
         var closestDistance:Float = Math.POSITIVE_INFINITY;
+
+        var playerPos = node.entity.position;
+        var cameraPos = cameraEntity.position;
 
         for(c in charactersList)
         {
@@ -51,7 +54,7 @@ class PlayerInputSystem extends ListIteratingSystem<PlayerInputNode>
             if(c.entity != node.entity && c.character.life > 0)
             {
                 var p2 = c.entity.position;
-                if(Math.abs(p2.x - mouseWorldPosition.x) < 35 && mouseWorldPosition.y > p2.y - 48 && mouseWorldPosition.y < p2.y + 32)
+                if(Math.abs(p2.x - mouseWorldPosition.x) < 35 && mouseWorldPosition.y > p2.y - 75 && mouseWorldPosition.y < p2.y + 32)
                 {
                     var distance = Maths.getVector3DistanceSquared(mouseWorldPosition, p2);
 
@@ -66,7 +69,6 @@ class PlayerInputSystem extends ListIteratingSystem<PlayerInputNode>
 
         if(closestNode != null)
         {
-            var playerPos = node.entity.position;
             var closestPos = closestNode.entity.position;
             var distance = Maths.getVector3DistanceSquared(closestPos, playerPos);
             closestNode.sprite.setAlpha(0.4);
@@ -115,6 +117,16 @@ class PlayerInputSystem extends ListIteratingSystem<PlayerInputNode>
         if(input.getMouseButtonDown(1 << 1))
         {
             node.character.sm.changeState("dying");
+        }
+
+        if(playerPos.x - cameraPos.x > 200)
+        {
+            cameraEntity.position = new Vector3(Std.int(playerPos.x - 200), 0, 0);
+        }
+
+        if(playerPos.x - cameraPos.x < -200)
+        {
+            cameraEntity.position = new Vector3(Std.int(playerPos.x + 200), 0, 0);
         }
     }
 
