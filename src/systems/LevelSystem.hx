@@ -18,6 +18,7 @@ class LevelSystem extends ListIteratingSystem<LevelNode>
     private var totalLength:Int;
     private var levelLength:Int;
     private var factor:Float;
+    private var offset = new Vector3(-400, -400, 0);
 
     public function new(cameraEntity)
     {
@@ -34,14 +35,12 @@ class LevelSystem extends ListIteratingSystem<LevelNode>
         e.get(Level).index = 0;
         engine.addEntity(e);
         e.scale = new Vector3(1, 1, 1);
-        e.position = new Vector3(-400, -400, 0);
         e.get(TileMap2D).setTmxFile(Gengine.getResourceCache().getTmxFile2D("map.tmx", true));
 
         var e = Factory.createMap();
         e.get(Level).index = 1;
         engine.addEntity(e);
         e.scale = new Vector3(1, 1, 1);
-        e.position = new Vector3(-400, -400, 0);
         e.get(TileMap2D).setTmxFile(Gengine.getResourceCache().getTmxFile2D("map.tmx", true));
 
         levelLength = 48*64;
@@ -51,11 +50,15 @@ class LevelSystem extends ListIteratingSystem<LevelNode>
     public override function update(dt:Float):Void
     {
         var camPos = cameraEntity.position;
-        loop = Std.int(camPos.x / totalLength);
-        zone = Std.int(camPos.x / levelLength);
+        loop = Math.floor((camPos.x - offset.x) / totalLength);
+        zone = Math.floor((camPos.x - offset.x) / levelLength);
+        while(zone < 0) zone += levelCount;
         zone = zone % levelCount;
 
-        factor = (camPos.x % levelLength) / levelLength;
+        var x = camPos.x - offset.x;
+        while(x < 0) x += levelLength;
+
+        factor = (x % levelLength) / levelLength;
 
         super.update(dt);
     }
@@ -64,13 +67,21 @@ class LevelSystem extends ListIteratingSystem<LevelNode>
     {
         var l = node.level.index;
 
-        node.entity.position = new Vector3(-400 + levelLength*l + totalLength*loop, -400, 0);
+        node.entity.position = new Vector3(offset.x + levelLength*l + totalLength*loop, offset.y, 0);
 
         if(factor < 0.5)
         {
             if(l == levelCount - 1 && zone == 0)
             {
-                node.entity.position = new Vector3(-400 + levelLength*l + totalLength*(loop - 1), -400, 0);
+                node.entity.position = new Vector3(offset.x + levelLength*l + totalLength*(loop - 1), offset.y, 0);
+            }
+        }
+
+        if(factor > 0.5)
+        {
+            if(zone == levelCount-1 && l == 0)
+            {
+                node.entity.position = new Vector3(offset.x + levelLength*l + totalLength*(loop + 1), offset.y, 0);
             }
         }
     }
