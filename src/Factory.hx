@@ -104,6 +104,7 @@ class Factory
     {
         var e = new Entity();
         e.add(new TileMap2D());
+        e.add(new Level());
 
         //e.get(TileMap2D).setTmxFile(Gengine.getResourceCache().getTmxFile2D("map.tmx", true));
 

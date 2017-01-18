@@ -45,6 +45,7 @@ class Application
         engine.addSystem(new DeathSystem(), 11);
         engine.addSystem(new IdleSystem(), 11);
         engine.addSystem(new FireSystem(), 11);
+        engine.addSystem(new LevelSystem(cameraEntity), 11);
 
         var viewport:Viewport = new Viewport(Gengine.getContext());
         viewport.setScene(Gengine.getScene());
@@ -67,12 +68,6 @@ class Application
 
         var e = Factory.createPlayer();
         engine.addEntity(e);
-
-        var e = Factory.createMap();
-        engine.addEntity(e);
-        e.scale = new Vector3(1, 1, 1);
-        e.position = new Vector3(-400, -400, 0);
-        e.get(TileMap2D).setTmxFile(Gengine.getResourceCache().getTmxFile2D("map.tmx", true));
     }
 
     public static function onGuiLoaded()
