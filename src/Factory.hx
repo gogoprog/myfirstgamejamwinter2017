@@ -73,6 +73,9 @@ class Factory
         sm.createState("hurting")
             .add(Hurt).withInstance(new Hurt());
 
+        sm.createState("firing")
+            .add(Fire).withInstance(new Fire());
+
         sm.changeState("idling");
 
         return e;

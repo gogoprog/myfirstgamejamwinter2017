@@ -34,6 +34,11 @@ class IdleSystem extends ListIteratingSystem<IdleNode>
         {
             c.sm.changeState("hitting");
         }
+
+        if(c.mustFire)
+        {
+            c.sm.changeState("firing");
+        }
     }
 
     private function onNodeAdded(node:IdleNode)

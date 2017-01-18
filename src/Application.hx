@@ -44,6 +44,7 @@ class Application
         engine.addSystem(new HurtSystem(), 11);
         engine.addSystem(new DeathSystem(), 11);
         engine.addSystem(new IdleSystem(), 11);
+        engine.addSystem(new FireSystem(), 11);
 
         var viewport:Viewport = new Viewport(Gengine.getContext());
         viewport.setScene(Gengine.getScene());
@@ -61,7 +62,7 @@ class Application
 
             engine.addEntity(e);
 
-            e.get(Character).moveTarget = new Vector2(Std.random(10) * 64 - 320, Std.random(10) * 10);
+            e.get(Character).moveTarget = new Vector2(Std.random(10) * 64 - 320, Std.random(10) * - 25);
         }
 
         var e = Factory.createPlayer();

@@ -11,6 +11,7 @@ class Character
     public var moveTarget:Vector2 = null;
     public var life:Float = 100.0;
     public var mustAttack:Bool;
+    public var mustFire:Bool;
     public var hitter:Entity;
 
     public function new()

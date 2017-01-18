@@ -107,9 +107,9 @@ class PlayerInputSystem extends ListIteratingSystem<PlayerInputNode>
             }
         }
 
-        if(input.getMouseButtonDown(1 << 0))
+        if(input.getMouseButtonPress(1 << 0))
         {
-            node.character.sm.changeState("firing");
+            node.character.mustFire = true;
         }
 
         if(playerPos.x - cameraPos.x > 200)
