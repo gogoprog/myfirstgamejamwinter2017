@@ -46,6 +46,7 @@ class Application
         engine.addSystem(new IdleSystem(), 11);
         engine.addSystem(new FireSystem(), 11);
         engine.addSystem(new LevelSystem(cameraEntity), 11);
+        engine.addSystem(new AudioSystem(cameraEntity), 100);
 
         var viewport:Viewport = new Viewport(Gengine.getContext());
         viewport.setScene(Gengine.getScene());

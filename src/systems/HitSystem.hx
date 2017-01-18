@@ -77,6 +77,8 @@ class HitSystem extends ListIteratingSystem<HitNode>
         node.animated.push2(node.hit.animation);
         node.character.mustAttack = false;
         node.hit.done = false;
+
+        AudioSystem.instance.playSound("hit", node.entity.position);
     }
 
     private function onNodeRemoved(node:HitNode)

@@ -56,6 +56,8 @@ class HurtSystem extends ListIteratingSystem<HurtNode>
         {
             node.character.sm.changeState("dying");
         }
+
+        AudioSystem.instance.playSound("hurt", node.entity.position);
     }
 
     private function onNodeRemoved(node:HurtNode)
