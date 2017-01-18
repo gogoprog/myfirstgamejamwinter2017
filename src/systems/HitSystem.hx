@@ -11,6 +11,17 @@ class HitSystem extends ListIteratingSystem<HitNode>
 {
     private var engine:Engine;
     private var charactersList:NodeList<CharacterNode>;
+    private var attackNames = [
+        "punches",
+        "lowkick",
+        "middlekick",
+        "highkick",
+        "downwardkick",
+        "roundkick",
+        "uppercut"
+        ];
+
+    private var attacks:Array<Animation> = [];
 
     public function new()
     {
@@ -22,6 +33,11 @@ class HitSystem extends ListIteratingSystem<HitNode>
         this.engine = engine;
         super.addToEngine(engine);
         charactersList = engine.getNodeList(CharacterNode);
+
+        for(n in attackNames)
+        {
+            attacks.push(Factory.animations[n]);
+        }
     }
 
     private function updateNode(node:HitNode, dt:Float):Void
@@ -57,9 +73,9 @@ class HitSystem extends ListIteratingSystem<HitNode>
 
     private function onNodeAdded(node:HitNode)
     {
-        node.hit.animation = node.character.nextHitAnimation;
+        node.hit.animation = attacks[Std.random(attacks.length)];
         node.animated.push2(node.hit.animation);
-        node.character.nextHitAnimation = null;
+        node.character.mustAttack = false;
         node.hit.done = false;
     }
 

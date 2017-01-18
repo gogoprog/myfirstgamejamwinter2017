@@ -75,7 +75,7 @@ class PlayerInputSystem extends ListIteratingSystem<PlayerInputNode>
 
             if(distance < 40 * 40)
             {
-                if(input.getMouseButtonPress(1 << 0))
+                if(input.getMouseButtonPress(1 << 2))
                 {
                     if(playerPos.x < closestPos.x)
                     {
@@ -86,21 +86,14 @@ class PlayerInputSystem extends ListIteratingSystem<PlayerInputNode>
                         node.entity.scale = new Vector3(-1, 1, 1);
                     }
 
-                    if(Math.random() < 0.5)
-                    {
-                        node.character.nextHitAnimation = Factory.animations["punch"];
-                    }
-                    else
-                    {
-                        node.character.nextHitAnimation = Factory.animations["punches"];
-                    }
+                    node.character.mustAttack = true;
                 }
             }
             else
             {
                 var xSign = (playerPos.x - closestPos.x) / Math.abs(playerPos.x - closestPos.x);
 
-                if(input.getMouseButtonPress(1 << 0))
+                if(input.getMouseButtonPress(1 << 2))
                 {
                     node.character.moveTarget = new Vector2(closestPos.x + 32 * xSign, closestNode.element.y);
                 }
@@ -108,15 +101,15 @@ class PlayerInputSystem extends ListIteratingSystem<PlayerInputNode>
         }
         else
         {
-            if(input.getMouseButtonDown(1 << 0))
+            if(input.getMouseButtonDown(1 << 2))
             {
                 node.character.moveTarget = new Vector2(mouseWorldPosition.x, mouseWorldPosition.y);
             }
         }
 
-        if(input.getMouseButtonDown(1 << 1))
+        if(input.getMouseButtonDown(1 << 0))
         {
-            node.character.sm.changeState("dying");
+            node.character.sm.changeState("firing");
         }
 
         if(playerPos.x - cameraPos.x > 200)

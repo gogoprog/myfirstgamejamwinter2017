@@ -19,10 +19,16 @@ class Factory
 
         addAnimation(new Animation("idle", 0, 0, 3, 10, 64, 64, 1024, 1024, true));
         addAnimation(new Animation("walk", 1, 0, 7, 20, 64, 64, 1024, 1024, true));
-        addAnimation(new Animation("punch", 6, 0, 5, 15, 64, 64, 1024, 1024, false));
+        addAnimation(new Animation("fire", 6, 0, 5, 15, 64, 64, 1024, 1024, false));
         addAnimation(new Animation("punches", 9, 0, 9, 15, 64, 64, 1024, 1024, false));
         addAnimation(new Animation("death", 4, 0, 6, 5, 64, 64, 1024, 1024, false));
         addAnimation(new Animation("hit", 4, 1, 3, 15, 64, 64, 1024, 1024, false));
+        addAnimation(new Animation("lowkick", 10, 0, 5, 15, 64, 64, 1024, 1024, false));
+        addAnimation(new Animation("middlekick", 10, 6, 11, 15, 64, 64, 1024, 1024, false));
+        addAnimation(new Animation("highkick", 11, 0, 5, 15, 64, 64, 1024, 1024, false));
+        addAnimation(new Animation("downwardkick", 12, 0, 7, 15, 64, 64, 1024, 1024, false));
+        addAnimation(new Animation("roundkick", 14, 0, 5, 7, 64, 64, 1024, 1024, false));
+        addAnimation(new Animation("uppercut", 15, 0, 5, 15, 64, 64, 1024, 1024, false));
     }
 
     static public function addAnimation(anim:Animation)

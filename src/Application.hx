@@ -30,6 +30,8 @@ class Application
 
         Gengine.getRenderer().getDefaultZone().setFogColor(new Color(0.1,0.1,0.1,1));
 
+        Factory.init();
+
         var cameraEntity = Factory.createCamera();
         engine.addEntity(cameraEntity);
 
@@ -42,8 +44,6 @@ class Application
         engine.addSystem(new HurtSystem(), 11);
         engine.addSystem(new DeathSystem(), 11);
         engine.addSystem(new IdleSystem(), 11);
-
-        Factory.init();
 
         var viewport:Viewport = new Viewport(Gengine.getContext());
         viewport.setScene(Gengine.getScene());

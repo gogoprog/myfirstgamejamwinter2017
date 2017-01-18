@@ -10,7 +10,7 @@ class Character
     public var moveSpeed:Float = 250.0;
     public var moveTarget:Vector2 = null;
     public var life:Float = 100.0;
-    public var nextHitAnimation:Animation;
+    public var mustAttack:Bool;
     public var hitter:Entity;
 
     public function new()

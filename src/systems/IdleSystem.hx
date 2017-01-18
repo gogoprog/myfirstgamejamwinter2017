@@ -30,7 +30,7 @@ class IdleSystem extends ListIteratingSystem<IdleNode>
             c.sm.changeState("moving");
         }
 
-        if(c.nextHitAnimation != null)
+        if(c.mustAttack)
         {
             c.sm.changeState("hitting");
         }
