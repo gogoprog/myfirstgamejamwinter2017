@@ -36,6 +36,16 @@ class Factory
         animations[anim.name] = anim;
     }
 
+    static public function createCircle():Entity
+    {
+        var e = new Entity();
+        e.add(new StaticSprite2D());
+        e.get(StaticSprite2D).setSprite(Gengine.getResourceCache().getSprite2D("circle.png", true));
+        e.get(StaticSprite2D).setColor(new Color(0, 1, 0, 1));
+        e.get(StaticSprite2D).setLayer(99);
+        return e;
+    }
+
     static public function createCharacter():Entity
     {
         var e = new Entity();
@@ -57,6 +67,7 @@ class Factory
 
         e.add(new Character());
         e.get(Character).sm = sm;
+        e.get(Character).baseColor = new Color(0.5,0.5,0.5,1);
 
         sm.createState("idling")
             .add(Idle).withInstance(new Idle());
@@ -86,6 +97,8 @@ class Factory
         var e = createCharacter();
 
         e.add(new PlayerInput());
+
+        e.get(Character).baseColor = new Color(1, 1, 1, 1);
 
         return e;
     }

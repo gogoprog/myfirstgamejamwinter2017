@@ -13,6 +13,7 @@ class Character
     public var mustAttack:Bool;
     public var mustFire:Bool;
     public var hitter:Entity;
+    public var baseColor:Color;
 
     public function new()
     {

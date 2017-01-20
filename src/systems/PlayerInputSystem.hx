@@ -14,6 +14,7 @@ class PlayerInputSystem extends ListIteratingSystem<PlayerInputNode>
     private var engine:Engine;
     private var cameraEntity:Entity;
     private var charactersList:NodeList<CharacterNode>;
+    private var targetCircle:Entity;
 
     public function new(cameraEntity)
     {
@@ -28,6 +29,11 @@ class PlayerInputSystem extends ListIteratingSystem<PlayerInputNode>
         super.addToEngine(engine);
 
         charactersList = engine.getNodeList(CharacterNode);
+
+        targetCircle = Factory.createCircle();
+        targetCircle.scale = new Vector3(2, 2, 1);
+
+        engine.addEntity(targetCircle);
     }
 
     private function updateNode(node:PlayerInputNode, dt:Float):Void
@@ -44,13 +50,20 @@ class PlayerInputSystem extends ListIteratingSystem<PlayerInputNode>
         var playerPos = node.entity.position;
         var cameraPos = cameraEntity.position;
 
-        for(c in charactersList)
+        if(node.character.moveTarget != null)
         {
-            c.sprite.setAlpha(1);
+            targetCircle.position = new Vector3(node.character.moveTarget.x, node.character.moveTarget.y - 16, 0);
+
+        }
+        else
+        {
+            targetCircle.position = new Vector3(-1000, -10000, 0);
         }
 
         for(c in charactersList)
         {
+            c.sprite.setColor(c.character.baseColor);
+
             if(c.entity != node.entity && c.character.life > 0)
             {
                 var p2 = c.entity.position;
@@ -67,15 +80,24 @@ class PlayerInputSystem extends ListIteratingSystem<PlayerInputNode>
             }
         }
 
+        if(input.getMouseButtonPress(1 << 0))
+        {
+            node.character.mustAttack = true;
+        }
+
         if(closestNode != null)
         {
             var closestPos = closestNode.entity.position;
-            var distance = Maths.getVector3DistanceSquared(closestPos, playerPos);
-            closestNode.sprite.setAlpha(0.4);
+            targetCircle.position = new Vector3(closestPos.x, closestPos.y - 64, 0);
 
-            if(distance < 40 * 40)
+            var deltaX = Math.abs(closestPos.x - playerPos.x);
+            var deltaY = Math.abs(closestPos.y - playerPos.y);
+            var distance = Maths.getVector3DistanceSquared(closestPos, playerPos);
+            closestNode.sprite.setColor(new Color(closestNode.character.baseColor.r, closestNode.character.baseColor.g - 0.2, closestNode.character.baseColor.b - 0.2, 1));
+
+            if(deltaX < 40 && deltaY < 20)
             {
-                if(input.getMouseButtonPress(1 << 2))
+                if(input.getMouseButtonPress(1 << 0))
                 {
                     if(playerPos.x < closestPos.x)
                     {
@@ -107,10 +129,10 @@ class PlayerInputSystem extends ListIteratingSystem<PlayerInputNode>
             }
         }
 
-        if(input.getMouseButtonPress(1 << 0))
+        /*if(input.getMouseButtonPress(1 << 0))
         {
             node.character.mustFire = true;
-        }
+        }*/
 
         if(playerPos.x - cameraPos.x > 200)
         {

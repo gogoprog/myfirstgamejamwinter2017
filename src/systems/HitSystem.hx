@@ -76,6 +76,7 @@ class HitSystem extends ListIteratingSystem<HitNode>
         node.hit.animation = attacks[Std.random(attacks.length)];
         node.animated.push2(node.hit.animation);
         node.character.mustAttack = false;
+        node.character.moveTarget = null;
         node.hit.done = false;
 
         AudioSystem.instance.playSound("hit", node.entity.position);
