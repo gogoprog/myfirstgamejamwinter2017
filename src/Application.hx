@@ -77,7 +77,12 @@ class Application
 
         pages.showPage(".menu");
 
-        //engine.getSystem(MenuSystem).init();
+        new JQuery(".menu").click(
+            function(e)
+            {
+                pages.showPage(".hud");
+            }
+            );
     }
 
     public static function changeState(stateName)

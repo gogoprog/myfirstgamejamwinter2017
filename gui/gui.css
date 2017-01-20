@@ -18,3 +18,34 @@ body, .pages, .pages > div {
     color:white;
     font-size:32px;
 }
+
+.menu {
+    font-size:150px;
+    line-height: 55%;
+    color:yellow;
+    font-weight: bold;
+    text-align:center;
+}
+
+.click {
+  -webkit-animation: blinker 500ms infinite alternate;
+  animation: blinker 500ms infinite alternate;
+  color:white;
+  font-size:48px;
+  display:block;
+  width:100%;
+  position:absolute;
+  bottom:10px;
+}
+
+@keyframes blinker {
+    0% { opacity: 1.0; }
+     50% { opacity: 0.0; }
+     100% { opacity: 1.0; }
+}
+
+@-webkit-keyframes blinker {
+    0% { opacity: 1.0; }
+     50% { opacity: 0.0; }
+     100% { opacity: 1.0; }
+}
