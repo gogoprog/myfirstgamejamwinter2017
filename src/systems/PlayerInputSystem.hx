@@ -111,7 +111,7 @@ class PlayerInputSystem extends ListIteratingSystem<PlayerInputNode>
                     node.character.mustAttack = true;
                 }
             }
-            else
+
             {
                 var xSign = (playerPos.x - closestPos.x) / Math.abs(playerPos.x - closestPos.x);
 

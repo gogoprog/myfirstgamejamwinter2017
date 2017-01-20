@@ -56,7 +56,7 @@ class HitSystem extends ListIteratingSystem<HitNode>
                     var p2 = other.entity.position;
                     var delta = p2.x - p.x;
 
-                    if(Math.abs(delta) < 35 && delta / Math.abs(delta) == node.entity.scale.x && Math.abs(p2.y - p.y) < 20)
+                    if(Math.abs(delta) < 40 && delta / Math.abs(delta) == node.entity.scale.x && Math.abs(p2.y - p.y) < 20)
                     {
                         other.character.hitter = node.entity;
                         other.character.sm.changeState("hurting");
