@@ -83,6 +83,12 @@ class PlayerInputSystem extends ListIteratingSystem<PlayerInputNode>
         if(input.getMouseButtonPress(1 << 0))
         {
             node.character.mustAttack = true;
+
+            if(node.character.moveTarget != null)
+            {
+                node.character.moveTarget = null;
+                node.character.sm.changeState("idling");
+            }
         }
 
         if(closestNode != null)

@@ -4,6 +4,7 @@ import gengine.*;
 import gengine.math.*;
 import ash.systems.*;
 import nodes.*;
+import components.*;
 import js.jquery.*;
 
 class GameSystem extends System
@@ -56,6 +57,22 @@ class GameSystem extends System
         {
             farthest = ix;
             farthestSpan.text(""+farthest);
+
+            onNewFarthest(ix);
+        }
+    }
+
+    private function onNewFarthest(f:Int)
+    {
+        if(f % 10 == 0)
+        {
+            var e = Factory.createEnemy();
+
+            e.position = new Vector3(cameraEntity.position.x + 400 + Std.random(10) * 20, Std.random(10) * - 25, 0);
+            e.get(StreetElement).y = Std.random(10) * - 25;
+            e.scale = new Vector3(-1,1,1);
+
+            engine.addEntity(e);
         }
     }
 }

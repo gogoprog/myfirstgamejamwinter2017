@@ -30,6 +30,7 @@ class DeathSystem extends ListIteratingSystem<DeathNode>
         node.animated.push("death");
         node.animated.lock = true;
         node.character.moveTarget = null;
+        AudioSystem.instance.playSound("death", node.entity.position);
     }
 
     private function onNodeRemoved(node:DeathNode)

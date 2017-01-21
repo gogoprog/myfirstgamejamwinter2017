@@ -30,6 +30,7 @@ class AudioSystem extends System
 
         add("hurt");
         add("hit");
+        add("death");
 
         cameraEntity = cameraEntity_;
 
