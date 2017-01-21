@@ -26,6 +26,7 @@ class Application
 
     public static function start(_engine:Engine)
     {
+        var state:EngineState;
         engine = _engine;
 
         Gengine.getRenderer().getDefaultZone().setFogColor(new Color(0.1,0.1,0.1,1));
@@ -38,7 +39,6 @@ class Application
         engine.addSystem(new AnimatedSystem(), 1);
         engine.addSystem(new StreetSystem(), 10);
         engine.addSystem(new CharacterSystem(), 10);
-        engine.addSystem(new PlayerInputSystem(cameraEntity), 2);
         engine.addSystem(new MoveSystem(), 10);
         engine.addSystem(new HitSystem(), 11);
         engine.addSystem(new HurtSystem(), 11);
@@ -52,6 +52,16 @@ class Application
         viewport.setScene(Gengine.getScene());
         viewport.setCamera(cameraEntity.get(Camera));
         Gengine.getRenderer().setViewport(0, viewport);
+
+        esm = new EngineStateMachine(engine);
+        state = new EngineState();
+        state.addInstance(new MenuSystem(cameraEntity));
+        esm.addState("menu", state);
+
+        state = new EngineState();
+        state.addInstance(new PlayerInputSystem(cameraEntity));
+        state.addInstance(new GameSystem(cameraEntity));
+        esm.addState("ingame", state);
 
         for(i in 0...10)
         {
@@ -69,6 +79,8 @@ class Application
 
         var e = Factory.createPlayer();
         engine.addEntity(e);
+
+        changeState("menu");
     }
 
     public static function onGuiLoaded()
@@ -80,6 +92,7 @@ class Application
         new JQuery(".menu").click(
             function(e)
             {
+                changeState("ingame");
                 pages.showPage(".hud");
             }
             );
