@@ -3,6 +3,16 @@
     src: url(ARCADECLASSIC.ttf);
 }
 
+body, .pages, .pages > div {
+    position:absolute;
+    top:0;
+    left:0;
+    height:600px;
+    width:800px;
+    padding:0;
+    margin:0;
+}
+
 #body {
     display:block;
     position:absolute;
@@ -15,6 +25,7 @@
     color:white;
     left: 50%;
     transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
 }
 
 #body > div {
