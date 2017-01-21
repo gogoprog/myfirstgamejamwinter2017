@@ -19,6 +19,7 @@ class GameSystem extends System
     {
         engine = _engine;
         cameraEntity.position = new Vector3(0, 0, 0);
+        AudioSystem.instance.playGameMusic();
     }
 
     override public function update(dt:Float):Void

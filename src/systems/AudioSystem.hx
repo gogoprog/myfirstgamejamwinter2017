@@ -89,7 +89,14 @@ class AudioSystem extends System
 
     public function playGameMusic()
     {
-        var s = Gengine.getResourceCache().getSound("music.ogg", true);
+        var s = Gengine.getResourceCache().getSound("music-game.ogg", true);
+        s.setLooped(true);
+        musicSource.play(s);
+    }
+
+    public function playMenuMusic()
+    {
+        var s = Gengine.getResourceCache().getSound("music-menu.ogg", true);
         s.setLooped(true);
         musicSource.play(s);
     }
