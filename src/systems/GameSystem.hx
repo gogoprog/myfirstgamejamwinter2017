@@ -66,13 +66,22 @@ class GameSystem extends System
     {
         if(f % 5 == 0)
         {
-            var e = Factory.createEnemy();
+            var n = 1;
 
-            e.position = new Vector3(cameraEntity.position.x + 400 + Std.random(10) * 20, Std.random(10) * - 25, 0);
-            e.get(StreetElement).y = Std.random(10) * - 25;
-            e.scale = new Vector3(-1,1,1);
+            n += Std.int(Math.random() * f / 20);
 
-            engine.addEntity(e);
+            for(i in 0...n)
+            {
+                var e = Factory.createEnemy();
+
+                e.position = new Vector3(cameraEntity.position.x + 432 + Std.random(10) * 20, Std.random(10) * - 25, 0);
+                e.get(StreetElement).y = Std.random(10) * - 25;
+                e.scale = new Vector3(-1,1,1);
+                e.get(Character).moveSpeed = 20 + f / 10;
+                e.get(Bot).latency = new Vector2(1 - f/10, 1 - f/10 + 1/f);
+
+                engine.addEntity(e);
+            }
         }
     }
 }

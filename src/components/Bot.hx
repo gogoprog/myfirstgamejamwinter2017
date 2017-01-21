@@ -8,6 +8,7 @@ class Bot
     public var latency:Vector2 = new Vector2(1, 1.5);
 
     public var willAttack = false;
+    public var targetPlayer = false;
 
     public function new()
     {

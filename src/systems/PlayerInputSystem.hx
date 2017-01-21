@@ -38,6 +38,11 @@ class PlayerInputSystem extends ListIteratingSystem<PlayerInputNode>
 
     private function updateNode(node:PlayerInputNode, dt:Float):Void
     {
+        if(node.character.life <= 0)
+        {
+            return;
+        }
+
         var input = Gengine.getInput();
         var mousePosition = input.getMousePosition();
 
