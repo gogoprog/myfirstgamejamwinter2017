@@ -68,6 +68,7 @@ class Factory
         e.add(new Character());
         e.get(Character).sm = sm;
         e.get(Character).baseColor = new Color(0.5,0.5,0.5,1);
+        e.get(StaticSprite2D).setColor(e.get(Character).baseColor);
 
         sm.createState("idling")
             .add(Idle).withInstance(new Idle());
@@ -99,6 +100,7 @@ class Factory
         e.add(new PlayerInput());
 
         e.get(Character).baseColor = new Color(1, 1, 1, 1);
+        e.get(StaticSprite2D).setColor(e.get(Character).baseColor);
 
         return e;
     }

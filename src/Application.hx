@@ -67,14 +67,14 @@ class Application
         {
             var e = Factory.createCharacter();
 
-            e.position = new Vector3(Std.random(10) * 64 - 320, 0, 0);
+            e.position = new Vector3(Std.random(10) * 64 - 320, Std.random(10) * - 25, 0);
 
-            e.get(Character).y = Std.random(10) * 10;
-            e.get(StaticSprite2D).setColor(new Color(Math.random(), Math.random(), Math.random(), 1));
+            e.get(StreetElement).y = Std.random(10) * - 25;
 
             engine.addEntity(e);
 
-            e.get(Character).moveTarget = new Vector2(Std.random(10) * 64 - 320, Std.random(10) * - 25);
+            e.get(Character).moveTarget = new Vector2(Std.random(10) * 6400, Std.random(10) * - 25);
+            e.get(Character).moveSpeed = Std.random(100) + 50;
         }
 
         var e = Factory.createPlayer();
