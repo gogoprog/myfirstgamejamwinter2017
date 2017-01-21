@@ -45,6 +45,7 @@ class Application
         engine.addSystem(new DeathSystem(), 11);
         engine.addSystem(new IdleSystem(), 11);
         engine.addSystem(new FireSystem(), 11);
+        engine.addSystem(new BotSystem(), 11);
         engine.addSystem(new LevelSystem(cameraEntity), 11);
         engine.addSystem(new AudioSystem(cameraEntity), 100);
 
@@ -65,7 +66,7 @@ class Application
 
         for(i in 0...10)
         {
-            var e = Factory.createCharacter();
+            var e = Factory.createEnemy();
 
             e.position = new Vector3(Std.random(10) * 64 - 320, Std.random(10) * - 25, 0);
 
