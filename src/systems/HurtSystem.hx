@@ -34,11 +34,10 @@ class HurtSystem extends ListIteratingSystem<HurtNode>
 
     private function onNodeAdded(node:HurtNode)
     {
-        node.hurt.hitter = node.character.hitter;
         node.hurt.animation = Factory.animations["hit"];
         node.animated.push2(node.hurt.animation);
 
-        var hitterPos = node.hurt.hitter.position;
+        var hitterPos = node.character.hitter.position;
         var p = node.entity.position;
 
         if(p.x < hitterPos.x)
@@ -62,5 +61,6 @@ class HurtSystem extends ListIteratingSystem<HurtNode>
 
     private function onNodeRemoved(node:HurtNode)
     {
+        node.character.hitter = null;
     }
 }

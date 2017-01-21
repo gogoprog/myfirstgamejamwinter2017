@@ -6,4 +6,5 @@ import components.*;
 class BotNode extends Node<BotNode>
 {
     public var bot:Bot;
+    public var character:Character;
 }
