@@ -14,6 +14,7 @@ class GameSystem extends System
     private var playerEntity:Entity;
     private var farthest:Int;
     private var farthestSpan:JQuery;
+    private var timeSinceDeath:Float;
 
     public function new(cameraEntity)
     {
@@ -48,6 +49,14 @@ class GameSystem extends System
         farthestSpan.text(""+farthest);
 
         playerEntity.get(Character).life = 500;
+        timeSinceDeath = 0;
+        playerEntity.get(Character).sm.changeState("idling");
+        playerEntity.get(Animated).animations = [];
+        playerEntity.get(Animated).lock = false;
+        playerEntity.get(Animated).push("idle");
+        playerEntity.position = new Vector3(0, 0, 0);
+
+        trace("START");
     }
 
     override public function update(dt:Float):Void
@@ -61,6 +70,17 @@ class GameSystem extends System
             farthestSpan.text(""+farthest);
 
             onNewFarthest(ix);
+        }
+
+        if(playerEntity.get(Character).life <= 0)
+        {
+            timeSinceDeath += dt;
+
+            if(timeSinceDeath > 3)
+            {
+                Application.changeState("menu");
+                Application.pages.showPage(".menu");
+            }
         }
     }
 

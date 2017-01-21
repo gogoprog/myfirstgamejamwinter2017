@@ -12,12 +12,14 @@ class Animated
 
     public function push(anim:String)
     {
+        if(lock) return;
         animations.push(Factory.animations[anim]);
         time = 0;
     }
 
     public function push2(anim:Animation)
     {
+        if(lock) return;
         animations.push(anim);
         time = 0;
     }

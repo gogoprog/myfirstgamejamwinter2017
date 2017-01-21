@@ -23,12 +23,12 @@ class DeathSystem extends ListIteratingSystem<DeathNode>
 
     private function updateNode(node:DeathNode, dt:Float):Void
     {
-        if(node.animated.getCurrentAnimation().name != "death")
+        /*if(node.animated.getCurrentAnimation().name != "death")
         {
             node.animated.push("death");
             node.animated.lock = true;
             node.character.moveTarget = null;
-        }
+        }*/
     }
 
     private function onNodeAdded(node:DeathNode)
@@ -41,6 +41,5 @@ class DeathSystem extends ListIteratingSystem<DeathNode>
 
     private function onNodeRemoved(node:DeathNode)
     {
-        trace("IMPOSSIBLE");
     }
 }
