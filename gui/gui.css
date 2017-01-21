@@ -20,18 +20,26 @@ body, .pages, .pages > div {
 }
 
 .menu {
-    font-size:150px;
     line-height: 55%;
     color:yellow;
     font-weight: bold;
     text-align:center;
 }
 
+.title {
+    background-image:url(title.png);
+    background-repeat: no-repeat;
+    width:320px;
+    height:192px;
+    display:inline-block;
+    margin-top:64px;
+}
+
 .click {
   -webkit-animation: blinker 500ms infinite alternate;
   animation: blinker 500ms infinite alternate;
   color:white;
-  font-size:48px;
+  font-size:32px;
   display:block;
   width:100%;
   position:absolute;
