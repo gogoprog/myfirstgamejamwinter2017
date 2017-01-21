@@ -24,6 +24,7 @@ body, .pages, .pages > div {
     color:yellow;
     font-weight: bold;
     text-align:center;
+    font-size:32px;
 }
 
 .title {
@@ -33,6 +34,7 @@ body, .pages, .pages > div {
     height:192px;
     display:inline-block;
     margin-top:64px;
+    margin-bottom:64px;
 }
 
 .click {

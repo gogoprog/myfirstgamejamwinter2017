@@ -115,7 +115,7 @@ class PlayerInputSystem extends ListIteratingSystem<PlayerInputNode>
             {
                 var xSign = (playerPos.x - closestPos.x) / Math.abs(playerPos.x - closestPos.x);
 
-                if(input.getMouseButtonPress(1 << 2))
+                if(input.getMouseButtonDown(1 << 2))
                 {
                     node.character.moveTarget = new Vector2(closestPos.x + 32 * xSign, closestNode.element.y);
                 }

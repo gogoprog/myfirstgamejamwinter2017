@@ -29,6 +29,7 @@ class DeathSystem extends ListIteratingSystem<DeathNode>
     {
         node.animated.push("death");
         node.animated.lock = true;
+        node.character.moveTarget = null;
     }
 
     private function onNodeRemoved(node:DeathNode)
