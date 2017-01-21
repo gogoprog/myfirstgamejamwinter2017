@@ -84,5 +84,11 @@ class HitSystem extends ListIteratingSystem<HitNode>
 
     private function onNodeRemoved(node:HitNode)
     {
+        var ca = node.animated.getCurrentAnimation();
+
+        if(ca == node.hit.animation)
+        {
+            node.animated.pop();
+        }
     }
 }

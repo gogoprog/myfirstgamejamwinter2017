@@ -34,6 +34,11 @@ class HurtSystem extends ListIteratingSystem<HurtNode>
 
     private function onNodeAdded(node:HurtNode)
     {
+        if(node.character.life <= 0)
+        {
+            return;
+        }
+
         node.hurt.animation = Factory.animations["hit"];
         node.animated.push2(node.hurt.animation);
 

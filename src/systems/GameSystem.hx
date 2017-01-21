@@ -46,6 +46,8 @@ class GameSystem extends System
         farthest = 0;
         farthestSpan = new JQuery(".farthest");
         farthestSpan.text(""+farthest);
+
+        playerEntity.get(Character).life = 500;
     }
 
     override public function update(dt:Float):Void
@@ -78,7 +80,7 @@ class GameSystem extends System
                 e.get(StreetElement).y = Std.random(10) * - 25;
                 e.scale = new Vector3(-1,1,1);
                 e.get(Character).moveSpeed = 20 + f / 10;
-                e.get(Bot).latency = new Vector2(1 - f/10, 1 - f/10 + 1/f);
+                e.get(Bot).latency = new Vector2(2 - f/20, 2 - f/20 + 10/f);
 
                 engine.addEntity(e);
             }
