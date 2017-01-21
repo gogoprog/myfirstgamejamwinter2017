@@ -26,6 +26,11 @@ class BotSystem extends ListIteratingSystem<BotNode>
         var c = node.character;
         var b = node.bot;
 
+        if(c.life <= 0)
+        {
+            return;
+        }
+
         if(c.hitter != null)
         {
             b.willAttack = true;

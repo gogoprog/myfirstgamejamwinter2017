@@ -64,7 +64,7 @@ class GameSystem extends System
 
     private function onNewFarthest(f:Int)
     {
-        if(f % 10 == 0)
+        if(f % 5 == 0)
         {
             var e = Factory.createEnemy();
 

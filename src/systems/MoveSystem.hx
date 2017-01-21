@@ -62,7 +62,7 @@ class MoveSystem extends ListIteratingSystem<MoveNode>
         {
             node.entity.scale = new Vector3(1, 1, 1);
         }
-        else
+        else if(m.moveTarget.x < m.moveStartPosition.x)
         {
             node.entity.scale = new Vector3(-1, 1, 1);
         }

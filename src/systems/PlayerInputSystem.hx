@@ -123,7 +123,8 @@ class PlayerInputSystem extends ListIteratingSystem<PlayerInputNode>
 
                 if(input.getMouseButtonDown(1 << 2))
                 {
-                    node.character.moveTarget = new Vector2(closestPos.x + 32 * xSign, closestNode.element.y);
+                    var x = deltaX < 32 ? playerPos.x : closestPos.x + 32 * xSign;
+                    node.character.moveTarget = new Vector2(x, closestNode.element.y);
                 }
             }
         }
