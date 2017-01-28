@@ -60,7 +60,7 @@ class BotSystem extends ListIteratingSystem<BotNode>
                 {
                     if(b.targetPlayer)
                     {
-                        if(Math.random() < 0.5)
+                        if(Math.random() < 0.5 && playerEntity != null)
                         {
                             var x = playerEntity.position.x;
                             var y = playerEntity.get(StreetElement).y;
